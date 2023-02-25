@@ -1,15 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import { Container, Typography, Divider, Stack, Button } from '@mui/material';
-// hooks
-import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { LoginForm } from '../sections/auth/login';
-import { Link } from 'react-router-dom';
+import RegisterForm from 'src/sections/auth/register/RegisterForm';
+
+// hooks
+import useResponsive from '../hooks/useResponsive';
 
 // ----------------------------------------------------------------------
 
@@ -41,13 +42,13 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const mdUp = useResponsive('up', 'md');
 
   return (
     <>
       <Helmet>
-        <title> Login | WHM </title>
+        <title> Register | WHM </title>
       </Helmet>
 
       <StyledRoot>
@@ -62,7 +63,7 @@ export default function LoginPage() {
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
+              Hi, Welcome From
             </Typography>
             <img src="/assets/illustrations/illustration_login.png" alt="login" />
           </StyledSection>
@@ -71,12 +72,12 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Sign up an Account in Minimal
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {''}
-              <Link to='/register' variant="subtitle2">Get started</Link>
+              Already have an account? {''}
+              <Link to='/login' variant="subtitle2">Login</Link>
             </Typography>
 
             <Stack direction="row" spacing={2}>
@@ -99,7 +100,7 @@ export default function LoginPage() {
               </Typography>
             </Divider>
 
-            <LoginForm />
+            <RegisterForm />
           </StyledContent>
         </Container>
       </StyledRoot>

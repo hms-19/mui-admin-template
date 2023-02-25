@@ -2,7 +2,7 @@ import { NavLink as RouterLink } from 'react-router-dom';
 // @mui
 import { Box, List, ListItemText } from '@mui/material';
 //
-import { Dashboard } from '@mui/icons-material';
+import { Chat, Dashboard } from '@mui/icons-material';
 import { StyledNavItem, StyledNavItemIcon } from './styles';
 
 
@@ -12,7 +12,7 @@ export default function NavSection() {
       <List disablePadding sx={{ p: 1 }}>
           <StyledNavItem
             component={RouterLink}
-            to='/dashboard'
+            to='/home'
             sx={{
               '&.active': {
                 color: 'text.primary',
@@ -25,7 +25,26 @@ export default function NavSection() {
                 <Dashboard />
             </StyledNavItemIcon>
 
-            <ListItemText disableTypography primary='Dashboard' />
+            <ListItemText disableTypography primary='Home' />
+          </StyledNavItem>
+      </List>
+      <List disablePadding sx={{ p: 1 }}>
+          <StyledNavItem
+            component={RouterLink}
+            to='/chat'
+            sx={{
+              '&.active': {
+                color: 'text.primary',
+                bgcolor: 'action.selected',
+                fontWeight: 'fontWeightBold',
+              },
+            }}
+          >
+            <StyledNavItemIcon>
+                <Chat />
+            </StyledNavItemIcon>
+
+            <ListItemText disableTypography primary='Chat' />
           </StyledNavItem>
       </List>
     </Box>

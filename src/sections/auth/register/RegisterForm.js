@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // @mui
 import { Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
-import { userLogin } from 'src/endpoints/auth';
 import { useCookies } from 'react-cookie';
 import Swal from 'sweetalert2';
+import { userRegister } from 'src/endpoints/auth';
 
 // ----------------------------------------------------------------------
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
@@ -19,26 +19,28 @@ export default function LoginForm() {
 
   // original state
   const [data, setData] = useState({
+    naem: '',
     email : '',
     password: ''
   })
 
   // state update
+  
   const EnterTextField = (key, value) => {
     setData({...data, [key]: value})
   }
 
   const handleClick = async () => {
-      if(data.email !== '' && data.password !== ''){
+      if(data.name !== '' && data.email !== '' && data.password !== ''){
         setIsLoading(true)
-        const res = await userLogin({
+        const res = await userRegister({
+          name: data.name,
           email: data.email,
           password: data.password
         })
         setIsLoading(false)
 
         if(res?.data?.success){
-          
           setCookie("token", res?.data?.token, {
             path: "/",expires: new Date(Date.now() + 86400e3)
           });
@@ -46,11 +48,13 @@ export default function LoginForm() {
           setCookie("user", JSON.stringify(res?.data?.data?.user), {
             path: "/",expires: new Date(Date.now() + 86400e3)
           });
-
+          
           setData({
+            name: '',
             email: '',
             password: ''
           })
+
           navigate('/home')
         }
         else{
@@ -75,6 +79,13 @@ export default function LoginForm() {
   return (
     <>
       <Stack spacing={3}>
+  
+        <TextField 
+          value={data.name}
+          onChange={(e) => EnterTextField("name",e.target.value)}
+          name="name" 
+          label="Name" />
+
         <TextField 
           value={data.email}
           onChange={(e) => EnterTextField("email",e.target.value)}
@@ -99,21 +110,14 @@ export default function LoginForm() {
         />
       </Stack>
 
-      {/* <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <Checkbox name="remember" label="Remember me" />
-        <Link to='/' variant="subtitle2" underline="hover">
-          Forgot password?
-        </Link>
-      </Stack> */}
-
       {
-        isLoading ?
+        isLoading ? 
         <LoadingButton fullWidth size="large" type="submit" sx={{ mt: 3 }} variant="contained" disabled>
-          Login
-        </LoadingButton>
-        : <LoadingButton fullWidth size="large" type="submit" sx={{ mt: 3 }} variant="contained" onClick={handleClick}>
-          Login
-        </LoadingButton>
+           Register
+        </LoadingButton> :
+        <LoadingButton fullWidth size="large" type="submit" sx={{ mt: 3 }} variant="contained" onClick={handleClick}>
+          Register
+      </LoadingButton>
       }
     </>
   );

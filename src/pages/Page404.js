@@ -42,7 +42,7 @@ export default function Page404() {
             sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
           />
 
-          <Link to="/" size="large" variant="contained" component={RouterLink}>
+          <Link to="/home" size="large" variant="contained" component={RouterLink}>
             Go to Home
           </Link>
         </StyledContent>
