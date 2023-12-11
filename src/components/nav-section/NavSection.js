@@ -2,8 +2,9 @@ import { NavLink as RouterLink } from 'react-router-dom';
 // @mui
 import { Box, List, ListItemText } from '@mui/material';
 //
-import { Chat, Dashboard } from '@mui/icons-material';
+import { Dashboard, PaymentOutlined } from '@mui/icons-material';
 import { StyledNavItem, StyledNavItemIcon } from './styles';
+import Transaction from 'src/pages/Transaction/Transaction';
 
 
 export default function NavSection() {
@@ -12,7 +13,7 @@ export default function NavSection() {
       <List disablePadding sx={{ p: 1 }}>
           <StyledNavItem
             component={RouterLink}
-            to='/home'
+            to='/dashboard'
             sx={{
               '&.active': {
                 color: 'text.primary',
@@ -25,13 +26,11 @@ export default function NavSection() {
                 <Dashboard />
             </StyledNavItemIcon>
 
-            <ListItemText disableTypography primary='Home' />
+            <ListItemText disableTypography primary='Dashboard' />
           </StyledNavItem>
-      </List>
-      <List disablePadding sx={{ p: 1 }}>
           <StyledNavItem
             component={RouterLink}
-            to='/chat'
+            to='/transaction'
             sx={{
               '&.active': {
                 color: 'text.primary',
@@ -41,10 +40,10 @@ export default function NavSection() {
             }}
           >
             <StyledNavItemIcon>
-                <Chat />
+                <PaymentOutlined />
             </StyledNavItemIcon>
 
-            <ListItemText disableTypography primary='Chat' />
+            <ListItemText disableTypography primary='Transaction' />
           </StyledNavItem>
       </List>
     </Box>

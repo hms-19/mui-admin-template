@@ -7,11 +7,3 @@ export const userLogin = async (data) => {
 
     return res
 }
-
-// register
-
-export const userRegister = async (data) => {
-    const res = await instance.post('/users',data)
-
-    return res
-}

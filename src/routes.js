@@ -6,9 +6,8 @@ import SimpleLayout from './layouts/simple';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
-import RegisterPage from './pages/RegisterPage';
 import ProtectedRoute from './components/protected-route/ProtectedRoute';
-import ChatPage from './pages/Chat/ChatPage';
+import Transaction from './pages/Transaction/Transaction';
 
 // ----------------------------------------------------------------------
 
@@ -18,13 +17,19 @@ export default function Router() {
       path: '/',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/home" />, index: true },
-        { path: 'home', element: <ProtectedRoute>
-          <DashboardAppPage />
-        </ProtectedRoute> },
-        { path: 'chat', element: <ProtectedRoute>
-          <ChatPage />
-        </ProtectedRoute> },
+        { element: <Navigate to="/dashboard" />, index: true },
+        { 
+          path: 'dashboard', 
+          element: <ProtectedRoute>
+            <DashboardAppPage />
+          </ProtectedRoute> 
+        },
+        { 
+          path: 'transaction', 
+          element: <ProtectedRoute>
+            <Transaction />
+          </ProtectedRoute> 
+        },
       ],
     },
     {
@@ -32,13 +37,9 @@ export default function Router() {
       element: <LoginPage />,
     },
     {
-      path: 'register',
-      element: <RegisterPage />,
-    },
-    {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/home" />, index: true },
+        { element: <Navigate to="/dashboard" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

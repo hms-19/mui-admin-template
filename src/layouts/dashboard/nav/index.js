@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 // @mui
-import { Box, Drawer } from '@mui/material';
+import { Box, Drawer, Typography } from '@mui/material';
 // mock
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
-import Logo from '../../../components/logo';
 import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
@@ -42,7 +41,7 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        <Logo />
+        <Typography fontWeight={'bold'} fontSize={'25px'}>Blind Box</Typography>
       </Box>
       <NavSection />
     </Scrollbar>
